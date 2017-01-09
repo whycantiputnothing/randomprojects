@@ -1,0 +1,143 @@
+Please enter a name (up to 40 characters): a
+Please enter an age: 0
+Please enter a salary: 0
+
+Please enter a name (up to 40 characters): b
+Please enter an age: 1
+Please enter a salary: 1
+
+Please enter a name (up to 40 characters): c
+Please enter an age: 2
+Please enter a salary: 2
+
+Please enter a name (up to 40 characters): d
+Please enter an age: 3
+Please enter a salary: 3
+
+Please enter a name (up to 40 characters): e
+Please enter an age: 4
+Please enter a salary: 4
+
+Please enter a name (up to 40 characters): f
+Please enter an age: 5
+Please enter a salary: 5
+
+Please enter a name (up to 40 characters): g
+Please enter an age: 6
+Please enter a salary: 6
+
+Please enter a name (up to 40 characters): h
+Please enter an age: 7
+Please enter a salary: 7
+
+Please enter a name (up to 40 characters): j
+Please enter an age: 8
+Please enter a salary: 8
+
+Please enter a name (up to 40 characters): k
+Please enter an age: 9
+Please enter a salary: 9
+
+
+Record #: 0
+name: a
+age: 0
+salary: 0
+
+Record #: 1
+name: b
+age: 1
+salary: 1
+
+Record #: 2
+name: c
+age: 2
+salary: 2
+
+Record #: 3
+name: d
+age: 3
+salary: 3
+
+Record #: 4
+name: e
+age: 4
+salary: 4
+
+Record #: 5
+name: f
+age: 5
+salary: 5
+
+Record #: 6
+name: g
+age: 6
+salary: 6
+
+Record #: 7
+name: h
+age: 7
+salary: 7
+
+Record #: 8
+name: j
+age: 8
+salary: 8
+
+Record #: 9
+name: k
+age: 9
+salary: 9
+
+Enter first record to be swapped(index begins at 0): 0
+Enter second record to be swapped(index ends at 9): 2
+Record #: 0
+name: c
+age: 2
+salary: 2
+
+Record #: 1
+name: b
+age: 1
+salary: 1
+
+Record #: 2
+name: a
+age: 0
+salary: 0
+
+Record #: 3
+name: d
+age: 3
+salary: 3
+
+Record #: 4
+name: e
+age: 4
+salary: 4
+
+Record #: 5
+name: f
+age: 5
+salary: 5
+
+Record #: 6
+name: g
+age: 6
+salary: 6
+
+Record #: 7
+name: h
+age: 7
+salary: 7
+
+Record #: 8
+name: j
+age: 8
+salary: 8
+
+Record #: 9
+name: k
+age: 9
+salary: 9
+
