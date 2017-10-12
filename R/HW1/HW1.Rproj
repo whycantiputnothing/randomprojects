@@ -1,0 +1,5 @@
+data(pima,package="faraway")
+head(pima)
+summary(pima$bmi)
+summary(pima$glucose)
+
