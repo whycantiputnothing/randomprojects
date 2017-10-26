@@ -1,0 +1,10 @@
+install.packages('faraway')
+data(pima,package="faraway")
+newpima <- subset(pima, age>0 & glucose >0)
+attach(newpima)
+fit1 <- lm(glucose~age)
+summary(fit1)
+confint(fit1, level = .99)
+98.63245 + 0.69292 * 42
+predict(fit1, data.frame(age = 42), interval ="prediction", level = .90)
+predict(fit1, data.frame(age = 42), interval ="confidence", level = .90)
