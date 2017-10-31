@@ -1,0 +1,9 @@
+Curving					10
+Dodgeball				15
+Keep Away				5
+Kin-Ball				7
+Prisoner Ball			21
+Quidditch				30
+Rundown (aka Pickle)	12 
+Yukigassen				18
+Handball				25

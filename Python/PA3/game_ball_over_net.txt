@@ -1,0 +1,18 @@
+Ball badminton	    59
+Biribol	    27
+Bossaball	    80
+Fistball	     3
+Footbag net	    37
+Football tennis	    32
+Footvolley	    65
+Hooverball	    67
+Peteca	    16
+Pickleball	    41
+Sepak takraw	     8
+Sipa	    11
+Throwball	    12
+Volleyball Beach volleyball	    13
+Water Volleyball	     5
+Paralympic volleyball	    11
+Wallyball	    11
+Tennis	     3
