@@ -15,7 +15,7 @@ public class MediansOfMedians {
         }
         return lst;
     }
-    
+
     public static List<Integer> randomList(int size, int max) {
         List<Integer> lst = new ArrayList<Integer>();
         Random rand = new Random();
@@ -24,13 +24,19 @@ public class MediansOfMedians {
         }
         return lst;
     }
-    
-    public static int partition(List<Integer> list, int parition){
+
+    public static int partition(List<Integer> list, int partition) {
         int pos = 0;
-        for(int i = 0; i < list.size(); i++){
-            if (list.get(i) > parition) {
-                
+        int value = 0;
+        int n = list.size();
+        for (int i = 0; i < n; i++) {
+            value = list.get(i);
+            if (value > partition) {
+                list.remove(i);
+                list.add(value);
             }
+            if (value == partition)
+                pos = i;
         }
         return pos;
     }
@@ -42,23 +48,24 @@ public class MediansOfMedians {
         }
 
         List<Integer> superMedianList = new ArrayList<Integer>();
-        
-        for(int i = 0; i < list.size()/5; i++) {
-            if (i*5 > list.size()) {
-                superMedianList.add(getMedian(list.subList(i*5, i*5+5), list.size()%5));
-            }
-            else{
-                superMedianList.add(getMedian(list.subList(i*5, i*5+5), 3));                
+
+        for (int i = 0; i < list.size() / 5; i++) {
+            if (i * 5 > list.size()) {
+                superMedianList.add(getMedian(list.subList(i * 5, i * 5 + 5), list.size() % 5));
+            } else {
+                superMedianList.add(getMedian(list.subList(i * 5, i * 5 + 5), 3));
             }
         }
-        int superMedian = getMedian(superMedianList, superMedianList.size()/2);
+        int superMedian = getMedian(superMedianList, superMedianList.size() / 2);
         return superMedian;
     }
 
     public static void main(String[] args) {
-        List list = randomList(25, 100);
+        List list = randomList(10, 100);
         System.out.println(list);
-        System.out.println(getMedian(list, 25/2+1));
+        partition(list, 20);
+        System.out.println(list);
+        System.out.println(getMedian(list, 25 / 2 + 1));
         list.sort(null);
         System.out.println(list);
     }
