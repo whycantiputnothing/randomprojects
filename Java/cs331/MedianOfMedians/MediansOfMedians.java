@@ -25,20 +25,24 @@ public class MediansOfMedians {
         return lst;
     }
 
-    public static int partition(List<Integer> list, int partition) {
-        int pos = 0;
-        int value = 0;
-        int n = list.size();
-        for (int i = 0; i < n; i++) {
-            value = list.get(i);
-            if (value > partition) {
-                list.remove(i);
-                list.add(value);
-            }
-            if (value == partition)
-                pos = i;
+    public static void swap(List<Integer> list, int i, int j) {
+        int val = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, val);
+    }
+
+    public static int partition(List<Integer> list, int pivot) {
+        int j = list.size() - 1;
+        int i = 0;
+        while (i <= j) {
+            while (list.get(i) < pivot)
+                i++;
+            while (list.get(j) > pivot)
+                j--;
+            if (i <= j)
+                swap(list, i++, j--);
         }
-        return pos;
+            return i;
     }
 
     public static int getMedian(List<Integer> list, int k) {
@@ -61,10 +65,13 @@ public class MediansOfMedians {
     }
 
     public static void main(String[] args) {
-        List list = randomList(10, 100);
+        List<Integer> list = randomList(10, 100);
         System.out.println(list);
-        partition(list, 20);
+        System.out.println(list.get(5));
+        int i = list.get(5);
+        i = partition(list, i);
         System.out.println(list);
+        System.out.println(i);
         System.out.println(getMedian(list, 25 / 2 + 1));
         list.sort(null);
         System.out.println(list);
