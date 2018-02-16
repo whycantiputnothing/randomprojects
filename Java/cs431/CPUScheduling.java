@@ -10,20 +10,17 @@ public class CPUScheduling {
     int numberOfProcesses;
 
     public CPUScheduling() {
-        list = new ArrayList<Process>();
+        
     }
 
     public static void main(String[] args) throws FileNotFoundException {
         CPUScheduling cpu = new CPUScheduling();
         cpu.readFile();
-        for (Process a : cpu.list) {
-            System.out.println(a.name);
-            System.out.println(a.burstTime);
-        }
         cpu.FCFS();
     }
 
     public void readFile() throws FileNotFoundException {
+        list = new ArrayList<Process>();
         File file = new File("testdata1.txt");
         Scanner input = new Scanner(file);
         int counter = 0;
