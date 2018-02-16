@@ -22,7 +22,23 @@ public class CPUScheduling {
         cpu.rr2();
         cpu.readFile("testdata1.txt");
         cpu.rr5();
-        
+        cpu.readFile("testdata2.txt");
+        cpu.FCFS();
+        cpu.readFile("testdata2.txt");
+        cpu.SJF();
+        cpu.readFile("testdata2.txt");
+        cpu.rr2();
+        cpu.readFile("testdata2.txt");
+        cpu.rr5();
+        cpu.readFile("testdata3.txt");
+        cpu.FCFS();
+        cpu.readFile("testdata3.txt");
+        cpu.SJF();
+        cpu.readFile("testdata3.txt");
+        cpu.rr2();
+        cpu.readFile("testdata3.txt");
+        cpu.rr5();
+
     }
 
     public void readFile(String name) {
@@ -56,68 +72,101 @@ public class CPUScheduling {
     }
 
     private void FCFS() {
-        int time = 1;
+        System.out.println("-----------Firt Come First Serve-----------");
+        int time = 0;
         for (Process p : list) {
             while (p.workTime < p.burstTime) {
-                System.out.println("Time: " + time);
-                System.out.println("\tJob Name: " + p.name);
+                System.out.print("\nTime: " + time);
+                System.out.print(" \tWorking on: " + p.name);
+                if (p.startTime == -1) {
+                    p.startTime = time;
+                    System.out.print(" \tstarted at time: " + p.startTime);
+                }
+                time++;
                 p.workTime++;
                 if (p.workTime == p.burstTime) {
                     p.completeTime = time;
-                    System.out.println("\t\t" + p.name + " completed");
+                    System.out
+                            .print("\tcompleted at time: " + time);
                 }
-                time++;
-
+                System.out.println();
             }
         }
         output();
     }
 
     private void SJF() {
+        System.out.println("-----------Shortest Job First-----------");
         list.sort(new Process());
-        FCFS();
+        int time = 0;
+        for (Process p : list) {
+            while (p.workTime < p.burstTime) {
+                System.out.print("\nTime: " + time);
+                System.out.print(" \tWorking on: " + p.name);
+                if (p.startTime == -1) {
+                    p.startTime = time;
+                    System.out.print(" \tstarted at time: " + p.startTime);
+                }
+                time++;
+                p.workTime++;
+                if (p.workTime == p.burstTime) {
+                    p.completeTime = time;
+                    System.out.print("\tcompleted at time: " + time);
+                }
+                System.out.println();
+            }
+        }
+        output();
     }
-    
+
     private void rr(int timeSlice) {
         int time = 0;
         int counter = 0;
         int complete = 0;
         Process p = new Process();
-        while(complete < numberOfProcesses) {
+        while (complete < numberOfProcesses) {
             p = list.get(counter);
-            if(!p.complete) {
-                for(int i = 0; i < timeSlice; i++) {
-                    time++;
-                    System.out.println("Time: " + time);
-                    System.out.println("\tJob Name: " + p.name);
+            if (!p.complete) {
+                for (int i = 0; i < timeSlice; i++) {
                     p.workTime++;
-                    if(p.workTime == p.burstTime) {
+                    System.out.print("\nTime: " + time);
+                    System.out.print(" \tWorking on: " + p.name);
+                    if (p.startTime == -1) {
+                        p.startTime = time;
+                        System.out.print(" \tstarted at time: " + p.startTime);
+                    }
+                    time++;
+                    if (p.workTime == p.burstTime) {
                         p.completeTime = time;
-                        p.complete = true;;
+                        p.complete = true;
+                        ;
                         complete++;
-                        System.out.println("\t\t" + p.name + " completed");
+                        System.out.println(" \tstarted at time: " + p.startTime + "\tcompleted at time: " + time);
                         break;
                     }
-                }                
+                    System.out.println();
+                }
             }
             counter++;
-            if(counter == numberOfProcesses) {
+            if (counter == numberOfProcesses) {
                 counter = 0;
             }
         }
         output();
     }
-    
 
     private void rr2() {
+        System.out.println("-----------Round Robin Time Slice 2-----------");
+
         rr(2);
-        
+
     }
 
     private void rr5() {
+        System.out.println("-----------Round Robin Time Slice 5-----------");
+
         rr(5);
     }
-    
 
     private void output() {
         double avgWaitingTime = 0;
@@ -128,6 +177,7 @@ public class CPUScheduling {
         }
         avgCompleteTime = avgCompleteTime / numberOfProcesses;
         avgWaitingTime = avgWaitingTime / numberOfProcesses;
+        System.out.println();
         System.out.println("Average waiting time: " + avgWaitingTime);
         System.out.println("Average Complete Time: " + avgCompleteTime);
 
