@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,19 +9,33 @@ public class CPUScheduling {
     int numberOfProcesses;
 
     public CPUScheduling() {
+
+    }
+
+    public static void main(String[] args) {
+        CPUScheduling cpu = new CPUScheduling();
+        cpu.readFile("testdata1.txt");
+        cpu.FCFS();
+        cpu.readFile("testdata1.txt");
+        cpu.SJF();
+        cpu.readFile("testdata1.txt");
+        cpu.rr2();
+        cpu.readFile("testdata1.txt");
+        cpu.rr5();
         
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        CPUScheduling cpu = new CPUScheduling();
-        cpu.readFile();
-        cpu.FCFS();
-    }
-
-    public void readFile() throws FileNotFoundException {
+    public void readFile(String name) {
         list = new ArrayList<Process>();
-        File file = new File("testdata1.txt");
-        Scanner input = new Scanner(file);
+        Scanner input = null;
+        try {
+            File inputFile = new File(name);
+            input = new Scanner(inputFile);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("file not found");
+        }
         int counter = 0;
         Process process = new Process();
         int num = 0;
@@ -38,50 +51,66 @@ public class CPUScheduling {
                 counter = 0;
             }
         }
-        numberOfProcesses = num/2;
+        numberOfProcesses = num / 2;
         input.close();
     }
-    
-    public void FCFS(){
+
+    private void FCFS() {
         int time = 1;
         int counter = 0;
         int complete = 0;
-        Process p = new Process();
-        while(complete < numberOfProcesses) {
-                p = list.get(counter);
+        for (Process p : list) {
+            while (p.workTime < p.burstTime) {
                 System.out.println("Time: " + time);
                 System.out.println("\tJob Name: " + p.name);
-                if(!p.complete) {
-                    p.workTime++;
-                    if (p.workTime == p.burstTime) {
-                        p.completeTime = time;
-                        p.complete = true;
-                        complete++;
-                        System.out.println("\t\t" + p.name + " completed");
-                    }              
+                p.workTime++;
+                if (p.workTime == p.burstTime) {
+                    p.completeTime = time;
+                    p.complete = true;
+                    complete++;
+                    System.out.println("\t\t" + p.name + " completed");
                 }
                 time++;
-                counter++;
-                if(counter > numberOfProcesses - 1) {
-                    counter = 0;
-                }                
+
+            }
         }
         output();
     }
+
+    private void SJF() {
+        list.sort(new Process());
+        FCFS();
+    }
     
-    public void output(){
+    private void rr() {
+        // TODO Auto-generated method stub
         
+    }
+    
+
+    private void rr2() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    private void rr5() {
+        // TODO Auto-generated method stub
+        
+    }
+    
+
+    private void output() {
         double avgWaitingTime = 0;
         double avgCompleteTime = 0;
         for (Process p : list) {
             avgCompleteTime += p.completeTime;
-            avgWaitingTime += p.completeTime - p.burstTime;
+            avgWaitingTime += (p.completeTime - p.burstTime);
         }
-        avgCompleteTime = avgCompleteTime/numberOfProcesses;
-        avgWaitingTime = avgWaitingTime/numberOfProcesses;
+        avgCompleteTime = avgCompleteTime / numberOfProcesses;
+        avgWaitingTime = avgWaitingTime / numberOfProcesses;
         System.out.println("Average waiting time: " + avgWaitingTime);
         System.out.println("Average Complete Time: " + avgCompleteTime);
-        
+
     }
 
 }
