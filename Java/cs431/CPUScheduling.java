@@ -57,8 +57,6 @@ public class CPUScheduling {
 
     private void FCFS() {
         int time = 1;
-        int counter = 0;
-        int complete = 0;
         for (Process p : list) {
             while (p.workTime < p.burstTime) {
                 System.out.println("Time: " + time);
@@ -66,8 +64,6 @@ public class CPUScheduling {
                 p.workTime++;
                 if (p.workTime == p.burstTime) {
                     p.completeTime = time;
-                    p.complete = true;
-                    complete++;
                     System.out.println("\t\t" + p.name + " completed");
                 }
                 time++;
@@ -82,20 +78,44 @@ public class CPUScheduling {
         FCFS();
     }
     
-    private void rr() {
-        // TODO Auto-generated method stub
-        
+    private void rr(int timeSlice) {
+        int time = 0;
+        int counter = 0;
+        int complete = 0;
+        Process p = new Process();
+        while(complete < numberOfProcesses) {
+            p = list.get(counter);
+            if(!p.complete) {
+                for(int i = 0; i < timeSlice; i++) {
+                    time++;
+                    System.out.println("Time: " + time);
+                    System.out.println("\tJob Name: " + p.name);
+                    p.workTime++;
+                    if(p.workTime == p.burstTime) {
+                        p.completeTime = time;
+                        p.complete = true;;
+                        complete++;
+                        System.out.println("\t\t" + p.name + " completed");
+                        break;
+                    }
+                }                
+            }
+            counter++;
+            if(counter == numberOfProcesses) {
+                counter = 0;
+            }
+        }
+        output();
     }
     
 
     private void rr2() {
-        // TODO Auto-generated method stub
+        rr(2);
         
     }
 
     private void rr5() {
-        // TODO Auto-generated method stub
-        
+        rr(5);
     }
     
 
