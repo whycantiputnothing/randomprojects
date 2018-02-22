@@ -32,17 +32,22 @@ public class MediansOfMedians {
     }
 
     public static int partition(List<Integer> list, int pivot) {
-        int j = list.size() - 1;
-        int i = 0;
-        while (i <= j) {
-            while (list.get(i) < pivot)
-                i++;
-            while (list.get(j) > pivot)
-                j--;
-            if (i <= j)
-                swap(list, i++, j--);
+        int low = 0;
+        int low2 = 0;
+        int high = list.size() - 1;
+        while (low <= high) {
+            if(list.get(low) == pivot) {
+                low++;
+            }
+            else if(list.get(low) > pivot){
+                swap(list, low, high--);
+            }
+            else {
+                swap(list, low++, low2++);
+            }
         }
-            return i;
+//        System.out.println("low: " + low + " high: " + high + " low2: " + low2 );
+        return low2;
     }
 
     public static int getMedian(List<Integer> list, int k) {
@@ -61,20 +66,21 @@ public class MediansOfMedians {
             }
         }
         int superMedian = getMedian(superMedianList, superMedianList.size() / 2);
-        return superMedian;
+        int position = partition(list, superMedian);
+        if(position == k -1) {
+            return list.get(position);
+        }
+        return list.get(position);
+        
     }
 
     public static void main(String[] args) {
-        List<Integer> list = randomList(10, 100);
+        List<Integer> list = randomList(11, 100);
         System.out.println(list);
-        System.out.println(list.get(5));
-        int i = list.get(5);
-        i = partition(list, i);
-        System.out.println(list);
-        System.out.println(i);
-        System.out.println(getMedian(list, 25 / 2 + 1));
+        System.out.println(getMedian(list, 6));
         list.sort(null);
         System.out.println(list);
+        System.exit(0);
     }
 
 }
