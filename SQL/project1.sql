@@ -1,23 +1,52 @@
 Create database ART_MUSEUM;
 use ART_MUSEUM;
+CREATE TABLE collection (
+    cname VARCHAR(30) NOT NULL,
+    type VARCHAR(30) NOT NULL,
+    description VARCHAR(300) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    contact_person VARCHAR(30) NOT NULL,
+    UNIQUE (cname),
+    PRIMARY KEY (cname)
+);
+CREATE TABLE borrowed (
+    collection_name VARCHAR(30) NOT NULL,
+    date_borrowed DATE NOT NULL,
+    date_returned DATE NOT NULL,
+    FOREIGN KEY (collection_name)
+        REFERENCES collection (cname)
+);
+CREATE TABLE artist (
+    aname VARCHAR(30) NOT NULL,
+    date_born DATE,
+    date_died DATE,
+    country_of_origin VARCHAR(30) NOT NULL,
+    epoch VARCHAR(30) NOT NULL,
+    main_style VARCHAR(30) NOT NULL,
+    description VARCHAR(300) NOT NULL,
+    PRIMARY KEY (aname),
+    UNIQUE (aname)
+);
 CREATE TABLE art_object (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     artist VARCHAR(30),
     year SMALLINT,
     title VARCHAR(30) NOT NULL,
     description VARCHAR(300) NOT NULL,
-    type enum ('PAINTING', 'SCULPTURE','STATUE','OTHER') not null,
+    type ENUM('PAINTING', 'SCULPTURE', 'STATUE', 'OTHER') NOT NULL,
     origin VARCHAR(30) NOT NULL,
     epoch VARCHAR(30) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (artist)
-        REFERENCES artist (name)
+        REFERENCES artist (aname)
 );
-create table other(
-	type varchar(30) not null,
-    style varchar(30) not null,
-    art_id int unsigned not null,
-    foreign key(art_id) references art_object(id)
+CREATE TABLE other (
+    type VARCHAR(30) NOT NULL,
+    style VARCHAR(30) NOT NULL,
+    art_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (art_id)
+        REFERENCES art_object (id)
 );
 CREATE TABLE painting (
     paint_type VARCHAR(30) NOT NULL,
@@ -53,23 +82,6 @@ CREATE TABLE permanent_collection (
     FOREIGN KEY (art_id)
         REFERENCES art_object (id)
 );
-CREATE TABLE borrowed (
-	collection_name varchar(30) not null,
-    date_borrowed DATE NOT NULL,
-    date_returned DATE NOT NULL,
-    foreign key(collection_name) references collection (cname)
-);
-CREATE TABLE artist (
-    aname VARCHAR(30) NOT NULL,
-    date_born DATE,
-    date_died DATE,
-    country_of_origin VARCHAR(30) NOT NULL,
-    epoch VARCHAR(30) NOT NULL,
-    main_style VARCHAR(30) NOT NULL,
-    description VARCHAR(300) NOT NULL,
-    PRIMARY KEY (aname),
-    UNIQUE (aname)
-);
 CREATE TABLE exhitbition (
     ename VARCHAR(30) NOT NULL,
     start_date DATE NOT NULL,
@@ -77,15 +89,5 @@ CREATE TABLE exhitbition (
     art_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (art_id)
         REFERENCES art_object (id)
-);
-create table collection ( 
-	cname varchar(30) not null,
-    type varchar(30) not null,
-    description varchar(300) not null,
-    address varchar (100) not null,
-    phone varchar(10) not null,
-    contact_person varchar(30) not null,
-    unique (cname),
-    primary key (cname)
 );
 SHOW TABLES;
