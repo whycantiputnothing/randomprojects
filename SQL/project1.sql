@@ -90,4 +90,3 @@ CREATE TABLE exhitbition (
     FOREIGN KEY (art_id)
         REFERENCES art_object (id)
 );
-SHOW TABLES;
