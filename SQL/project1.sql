@@ -1,21 +1,15 @@
+DROP DATABASE IF EXISTS art_museum; 
 Create database ART_MUSEUM;
 use ART_MUSEUM;
 CREATE TABLE collection (
     cname VARCHAR(30) NOT NULL,
-    type VARCHAR(30) NOT NULL,
+    ctype VARCHAR(30) NOT NULL,
     description VARCHAR(300) NOT NULL,
     address VARCHAR(100) NOT NULL,
     phone VARCHAR(10) NOT NULL,
     contact_person VARCHAR(30) NOT NULL,
     UNIQUE (cname),
     PRIMARY KEY (cname)
-);
-CREATE TABLE borrowed (
-    collection_name VARCHAR(30) NOT NULL,
-    date_borrowed DATE NOT NULL,
-    date_returned DATE NOT NULL,
-    FOREIGN KEY (collection_name)
-        REFERENCES collection (cname)
 );
 CREATE TABLE artist (
     aname VARCHAR(30) NOT NULL,
@@ -42,7 +36,7 @@ CREATE TABLE art_object (
         REFERENCES artist (aname)
 );
 CREATE TABLE other (
-    type VARCHAR(30) NOT NULL,
+    otype VARCHAR(30) NOT NULL,
     style VARCHAR(30) NOT NULL,
     art_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (art_id)
@@ -76,9 +70,19 @@ CREATE TABLE statue (
 );
 CREATE TABLE permanent_collection (
     date_acquired DATE NOT NULL,
-    status ENUM('display', 'on loan', 'stored') NOT NULL,
+    status ENUM('display', 'loan', 'stored') NOT NULL,
     cost INT NOT NULL,
     art_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (art_id)
+        REFERENCES art_object (id)
+);
+CREATE TABLE borrowed (
+    collection_name VARCHAR(30) NOT NULL,
+    date_borrowed DATE NOT NULL,
+    date_returned DATE NOT NULL,
+    art_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (collection_name)
+        REFERENCES collection (cname),
     FOREIGN KEY (art_id)
         REFERENCES art_object (id)
 );
