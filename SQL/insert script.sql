@@ -27,12 +27,3 @@ insert into permanent_collection values ('2018-01-01', 'display', 2005, last_ins
 insert into exhitbition values ('kristin expo', '2018-01-01', '2018-03-01' , last_insert_id());
 
 
-insert into art_object (artist, year, title, description, type, origin, epoch) values ('reuben', 2012, 'self portrait', 'my self portrait', 'painting', 'america', 'mordern');
-insert into art_object (artist, year, title, description, type, origin, epoch) values ('reuben', 2012, 'self portrait', 'my self portrait', 'painting', 'america', 'mordern');
-insert into art_object (artist, year, title, description, type, origin, epoch) values ('reuben', 2012, 'self portrait', 'my self portrait', 'painting', 'america', 'mordern');
-insert into art_object (artist, year, title, description, type, origin, epoch) values ('reuben', 2012, 'self portrait', 'my self portrait', 'painting', 'america', 'mordern');
-
-
-
-
-

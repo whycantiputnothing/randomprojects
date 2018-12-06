@@ -2,8 +2,20 @@
 
 using namespace std;
 
+int functArr(int arr[]){
+	return arr[1];
+}
+
+int abc(int *arr){
+	return *arr;
+}
+
 int main() {
-	cout << "Hello, world!" << endl << "CS16 Spring 2018." << endl;
+	int p[5];
+	p[1] = 5;
+	cout << functArr(p) << endl;
+	cout << abc(p) << endl;
+
 
 	return 0;
 }
