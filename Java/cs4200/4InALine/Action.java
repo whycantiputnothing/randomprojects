@@ -1,36 +1,22 @@
-/**
- * This class represents an action that corresponds with the game board. The format of
- * and action is (row, column) where row is represented by a letter (A-H) and column
- * is represented by a number (1-8).
- */
+
 public class Action {
-    private int row;
-    private int col;
+	private int row;
+	private int column;
 
-    /* Action constructor */
-    public Action( int r, int c ){
-        row = r;
-        col = c;
-    }
+	public Action(int r, int c) {
+		row = r;
+		column = c;
+	}
 
-    /**
-     * Returns the row.
-     */
-    public int getRow(){
-        return row;
-    }
+	public int getRow() {
+		return row;
+	}
 
-    /**
-     * Returns the column.
-     */
-    public int getCol(){
-        return col;
-    }
+	public int getCol() {
+		return column;
+	}
 
-    /**
-     * Converts the action to a String.
-     */
-    public String toString(){
-        return "" + (char)(row + 65) + (col + 1 );
-    }
+	public String toString() {
+		return "" + (char) (row + 65) + (column + 1);
+	}
 }
